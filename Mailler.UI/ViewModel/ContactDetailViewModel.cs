@@ -1,4 +1,5 @@
 ﻿using Mailler.Model;
+using Mailler.UI.Data;
 using Mailler.UI.Event;
 using Mailler.UI.ViewModel;
 using Prism.Events;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mailler.UI.Data
+namespace Mailler.UI.ViewModel
 {
     public class ContactDetailViewModel : ViewModelBase, IContactDetailViewModel
     {

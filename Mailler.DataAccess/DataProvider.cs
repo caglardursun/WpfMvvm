@@ -15,8 +15,6 @@ namespace Mailler.DataAccess
         private string RootPath;
         private static DataProvider _instance;
 
-        
-
         private static object obj = new object();
 
         public static DataProvider Instance

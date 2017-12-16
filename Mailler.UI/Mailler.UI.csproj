@@ -68,7 +68,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstraper\Bootstrapper.cs" />
-    <Compile Include="Data\ContactDetailViewModel.cs" />
+    <Compile Include="ViewModel\ContactDetailViewModel.cs" />
     <Compile Include="Data\IContactDetailModel.cs" />
     <Compile Include="Data\ILookUpDataService.cs" />
     <Compile Include="Data\LookUpDataService.cs" />

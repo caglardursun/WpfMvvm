@@ -1,6 +1,7 @@
 ﻿using Mailler.Model;
 using Mailler.UI.Data;
 using Mailler.UI.Event;
+using Mailler.UI.Validator;
 using Mailler.UI.ViewModel;
 using Prism.Commands;
 using Prism.Events;
@@ -19,7 +20,7 @@ namespace Mailler.UI.ViewModel
 
         private IEventAggregator _eventAggregator;
 
-        private Contact _contact;
+        private ContactWrapper _contact;
 
         public ContactDetailViewModel(IContactDataService dataService, IEventAggregator eventAggregator)
         {
@@ -30,9 +31,30 @@ namespace Mailler.UI.ViewModel
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
         }
 
+        public void Load(int contactId)
+        {
+            var contact = _dataService.GetById(contactId).First();
+            Contact = new ContactWrapper(contact);
+        }
+
+        public ContactWrapper Contact
+        {
+            get
+            {
+                return _contact;
+            }
+            set
+            {
+                _contact = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand SaveCommand { get; }
+
         private void OnSaveExecute()
         {
-            _dataService.Save(Contact);
+            _dataService.Save(Contact.Model);
             _eventAggregator.GetEvent<AfterContactSaveEvent>()
                 .Publish(new AfterContactSaveEventArgs()
                 {
@@ -52,24 +74,5 @@ namespace Mailler.UI.ViewModel
             Load(contactId);
         }
 
-        public void Load(int contactId)
-        {
-            Contact = _dataService.GetById(contactId).First();
-        }
-        
-        public Contact Contact
-        {
-            get
-            {
-                return _contact;
-            }
-            set
-            {
-                _contact = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public ICommand SaveCommand { get; }
     }
 }

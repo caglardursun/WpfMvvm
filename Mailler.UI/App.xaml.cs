@@ -24,5 +24,13 @@ namespace Mailler.UI
             var mainWindow = container.Resolve<MainWindow>();
             mainWindow.Show();
         }
+
+        private void Application_DispatcherUnhandledException(object sender, 
+            System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show("Unhandled Exception Occured");
+            e.Handled = true;
+
+        }
     }
 }

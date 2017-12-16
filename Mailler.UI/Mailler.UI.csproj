@@ -69,6 +69,7 @@
     </ApplicationDefinition>
     <Compile Include="Bootstraper\Bootstrapper.cs" />
     <Compile Include="Event\AfterContactSaveEvent.cs" />
+    <Compile Include="Validator\ContactWrapper.cs" />
     <Compile Include="ViewModel\ContactDetailViewModel.cs" />
     <Compile Include="Data\IContactDetailModel.cs" />
     <Compile Include="Data\ILookUpDataService.cs" />

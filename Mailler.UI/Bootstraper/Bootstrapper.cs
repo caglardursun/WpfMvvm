@@ -12,8 +12,6 @@ namespace Mailler.UI.Bootstraper
 {
     public class Bootstrapper 
     {
-        
-
         public IContainer Bootstrap()
         {
             var builder = new ContainerBuilder();

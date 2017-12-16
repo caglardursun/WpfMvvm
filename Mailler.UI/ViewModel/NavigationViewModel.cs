@@ -38,7 +38,7 @@ namespace Mailler.UI.ViewModel
             Contacts.Clear();
             foreach (var item in lookUp)
             {
-                Contacts.Add(new NavigationItemViewModel(item.Id, item.DisplayMember));
+                Contacts.Add(new NavigationItemViewModel(item.Id, item.DisplayMember ));
             }
         }
 

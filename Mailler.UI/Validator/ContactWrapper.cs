@@ -39,7 +39,7 @@ namespace Mailler.UI.Validator
                 case nameof(Name):
                     if (string.Equals(Name,"Error",StringComparison.OrdinalIgnoreCase))
                     {
-                        AddError(propertyName, "Error cannot be a real name");
+                        AddError(propertyName, "Error, cannot be a real name !!!");
                     }
                     break;
                 default:

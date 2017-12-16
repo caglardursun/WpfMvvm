@@ -5,7 +5,19 @@
              Startup="Application_Startup" 
              DispatcherUnhandledException="Application_DispatcherUnhandledException" >
     <Application.Resources>
+        
         <Style TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="placeHolder" />
+                            <TextBlock FontSize="12" Foreground="Red" Text="{Binding ElementName=placeHolder,
+                                Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
                     <Setter Property="Background" Value="Red"/>

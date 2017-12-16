@@ -6,5 +6,6 @@ namespace Mailler.UI.Data
     public interface IContactDataService
     {
         IEnumerable<Contact> GetById(int contactId);
+        void Save(Contact contact);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Mailler.Model
 {
-    public class LookUpItem
+    public class LookUpItem 
     {
         [Key]
         public int Id { get; set; }

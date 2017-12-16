@@ -10,10 +10,17 @@ namespace Mailler.UI.Data
 {
     public class ContactDataService : IContactDataService
     {
+        
         public IEnumerable<Contact> GetById(int contactId)
         {
-            DataProvider provider = DataProvider.Instance;
+            DataProvider provider= DataProvider.Instance;
             return provider.GetContactsById(contactId);
+        }
+
+        public void Save(Contact contact)
+        {
+            DataProvider provider = DataProvider.Instance;
+            provider.Save(contact);
         }
     }
 }

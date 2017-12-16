@@ -68,6 +68,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstraper\Bootstrapper.cs" />
+    <Compile Include="Event\AfterContactSaveEvent.cs" />
     <Compile Include="ViewModel\ContactDetailViewModel.cs" />
     <Compile Include="Data\IContactDetailModel.cs" />
     <Compile Include="Data\ILookUpDataService.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Event\OpenContactDetailViewEvent.cs" />
     <Compile Include="ViewModel\INavigationViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NavigationItemViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\ContactDetailView.xaml.cs">

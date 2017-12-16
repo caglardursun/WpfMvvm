@@ -21,7 +21,15 @@ namespace Mailler.UI.ViewModel
         {
             _contactLookupService = contactLookupService;
             _eventAggregator = eventAggregator;
-            Contacts = new ObservableCollection<LookUpItem>();
+            Contacts = new ObservableCollection<NavigationItemViewModel>();
+            _eventAggregator.GetEvent<AfterContactSaveEvent>().Subscribe(AfterContactSave);
+        }
+
+        private void AfterContactSave(AfterContactSaveEventArgs obj)
+        {
+            var lookupItem = Contacts.Single(l => l.Id == obj.Id);
+            lookupItem.DisplayMember = obj.DisplayMember;
+            
         }
 
         public void Load()
@@ -30,14 +38,15 @@ namespace Mailler.UI.ViewModel
             Contacts.Clear();
             foreach (var item in lookUp)
             {
-                Contacts.Add(item);
+                Contacts.Add(new NavigationItemViewModel(item.Id, item.DisplayMember));
             }
         }
 
-        public ObservableCollection<LookUpItem> Contacts { get; }
-        private LookUpItem _selectedContact;
+        public ObservableCollection<NavigationItemViewModel> Contacts { get; }
 
-        public LookUpItem SelectedContact
+        private NavigationItemViewModel _selectedContact;
+
+        public NavigationItemViewModel SelectedContact
         {
             get { return _selectedContact; }
             set

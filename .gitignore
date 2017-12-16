@@ -40,6 +40,10 @@ TestResult.xml
 [Rr]eleasePS/
 dlldata.c
 
+#Db
+*.ldb
+
+
 # DNX
 project.lock.json
 artifacts/

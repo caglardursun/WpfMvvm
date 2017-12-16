@@ -77,5 +77,11 @@ namespace Mailler.DataAccess
                 throw new Exception("Doublicated Records Founded");
             }
         }
+
+        public void Save(Contact contact)
+        {
+            repo.Update(contact);            
+        }
+
     }
 }

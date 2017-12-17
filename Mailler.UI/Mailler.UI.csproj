@@ -44,6 +44,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -69,9 +70,9 @@
     </ApplicationDefinition>
     <Compile Include="Bootstraper\Bootstrapper.cs" />
     <Compile Include="Event\AfterContactSaveEvent.cs" />
-    <Compile Include="Validator\ContactWrapper.cs" />
-    <Compile Include="Validator\ModelWrapper.cs" />
-    <Compile Include="Validator\NotifyDataErrorInfoBase.cs" />
+    <Compile Include="Wrapper\ContactWrapper.cs" />
+    <Compile Include="Wrapper\ModelWrapper.cs" />
+    <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
     <Compile Include="ViewModel\ContactDetailViewModel.cs" />
     <Compile Include="Data\IContactDetailModel.cs" />
     <Compile Include="Data\ILookUpDataService.cs" />

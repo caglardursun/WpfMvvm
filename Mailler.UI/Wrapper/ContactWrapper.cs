@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Runtime.CompilerServices;
 
-namespace Mailler.UI.Validator
+namespace Mailler.UI.Wrapper
 {
     
     public class ContactWrapper : ModelWrapper<Contact>
@@ -39,9 +39,9 @@ namespace Mailler.UI.Validator
         
         public string Name { get { return GetValue<string>(nameof(Name)); } set { SetValue(value); } }
 
-        public string Surname{ get { return GetValue<string>(nameof(Name)); } set { SetValue(value); } }
+        public string Surname{ get { return GetValue<string>(nameof(Surname)); } set { SetValue(value); } }
 
-        public string EMail { get { return GetValue<string>(nameof(Name)); } set { SetValue(value);} }
+        public string EMail { get { return GetValue<string>(nameof(EMail)); } set { SetValue(value);} }
 
         protected override IEnumerable<string> ValidateProperty(string propertyName)
         {
@@ -56,6 +56,8 @@ namespace Mailler.UI.Validator
                 default:
                     break;
             }
+
+            
         }
 
         }

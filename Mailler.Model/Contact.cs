@@ -8,13 +8,14 @@ namespace Mailler.Model
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(20)]
         public string Name { get; set; }
 
         [MaxLength(50)]
         public string Surname { get; set; }
 
         [MaxLength(50)]
+        [EmailAddress]
         public string EMail { get; set; }
     }
 }

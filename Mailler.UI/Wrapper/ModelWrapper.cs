@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mailler.UI.Validator
+namespace Mailler.UI.Wrapper
 {
     public class ModelWrapper<T> : NotifyDataErrorInfoBase
     {
@@ -26,12 +27,30 @@ namespace Mailler.UI.Validator
         {
             typeof(T).GetProperty(propertyName).SetValue(Model, value);
             OnPropertyChanged(propertyName);
-            ValidatePropertyInternal(propertyName);
+            ValidatePropertyInternal(propertyName,value);
         }
 
-        private void ValidatePropertyInternal(string propertyName)
+        private void ValidatePropertyInternal(string propertyName,object currentValue)
         {
-            ClearErrors(propertyName);
+            ClearErrors(propertyName);            
+            ValidateDataAnnotations(propertyName, currentValue);            
+            ValidateCustomErrors(propertyName);
+        }
+
+        private void ValidateDataAnnotations(string propertyName, object currentValue)
+        {
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(Model) { MemberName = propertyName };
+            Validator.TryValidateProperty(currentValue, context, results);
+
+            foreach (var item in results)
+            {
+                AddError(propertyName, item.ErrorMessage);
+            }
+        }
+
+        private void ValidateCustomErrors(string propertyName)
+        {
             var errors = ValidateProperty(propertyName);
             if (errors != null)
             {

@@ -1,7 +1,7 @@
 ﻿using Mailler.Model;
 using Mailler.UI.Data;
 using Mailler.UI.Event;
-using Mailler.UI.Validator;
+using Mailler.UI.Wrapper;
 using Mailler.UI.ViewModel;
 using Prism.Commands;
 using Prism.Events;

@@ -1,4 +1,4 @@
-﻿namespace Mailler.UI.Data
+﻿namespace Mailler.UI.ViewModel
 {
     public interface IContactDetailViewModel
     {

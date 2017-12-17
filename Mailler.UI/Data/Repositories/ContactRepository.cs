@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mailler.UI.Data
 {
-    public class ContactDataService : IContactDataService
+    public class ContactRepository : IContactRepository
     {
         
         public IEnumerable<Contact> GetById(int contactId)

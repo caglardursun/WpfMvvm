@@ -20,7 +20,7 @@ namespace Mailler.UI.Bootstraper
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<ContactDetailViewModel>().As<IContactDetailViewModel>();
-            builder.RegisterType<ContactDataService>().As<IContactDataService>();
+            builder.RegisterType<ContactRepository>().As<IContactRepository>();
             builder.RegisterType<LookUpContactDataService>().AsImplementedInterfaces();
             return builder.Build();
         }

@@ -3,7 +3,7 @@ using Mailler.Model;
 
 namespace Mailler.UI.Data
 {
-    public interface IContactDataService
+    public interface IContactRepository
     {
         IEnumerable<Contact> GetById(int contactId);
         void Save(Contact contact);

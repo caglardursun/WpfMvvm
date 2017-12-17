@@ -16,13 +16,13 @@ namespace Mailler.UI.ViewModel
 {
     public class ContactDetailViewModel : ViewModelBase, IContactDetailViewModel
     {
-        private IContactDataService _dataService;
+        private IContactRepository _dataService;
 
         private IEventAggregator _eventAggregator;
 
         private ContactWrapper _contact;
 
-        public ContactDetailViewModel(IContactDataService dataService, IEventAggregator eventAggregator)
+        public ContactDetailViewModel(IContactRepository dataService, IEventAggregator eventAggregator)
         {
             _dataService = dataService;
             _eventAggregator = eventAggregator;

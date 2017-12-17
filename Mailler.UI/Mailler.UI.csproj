@@ -69,14 +69,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstraper\Bootstrapper.cs" />
+    <Compile Include="Data\Repositories\ContactRepository.cs" />
     <Compile Include="Event\AfterContactSaveEvent.cs" />
     <Compile Include="Wrapper\ContactWrapper.cs" />
     <Compile Include="Wrapper\ModelWrapper.cs" />
     <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
     <Compile Include="ViewModel\ContactDetailViewModel.cs" />
-    <Compile Include="Data\IContactDetailModel.cs" />
-    <Compile Include="Data\ILookUpDataService.cs" />
-    <Compile Include="Data\LookUpDataService.cs" />
+    <Compile Include="ViewModel\IContactDetailModel.cs" />
+    <Compile Include="Data\LookUps\ILookUpDataService.cs" />
+    <Compile Include="Data\LookUps\LookUpDataService.cs" />
     <Compile Include="Event\OpenContactDetailViewEvent.cs" />
     <Compile Include="ViewModel\INavigationViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -97,8 +98,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\ContactDataService.cs" />
-    <Compile Include="Data\IContactDataService.cs" />
+    <Compile Include="Data\Repositories\IContactRepository.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

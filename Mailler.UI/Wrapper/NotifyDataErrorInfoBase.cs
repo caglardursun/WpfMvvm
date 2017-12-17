@@ -32,6 +32,7 @@ namespace Mailler.UI.Wrapper
         protected void OnErrorsChanged(string propertyName)
         {
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            base.OnPropertyChanged(nameof(HasErrors));
         }
 
         protected void AddError(string propertyName, string error)

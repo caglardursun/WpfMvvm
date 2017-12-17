@@ -35,6 +35,14 @@ namespace Mailler.UI.ViewModel
         {
             var contact = _dataService.GetById(contactId).First();
             Contact = new ContactWrapper(contact);
+            Contact.PropertyChanged += (s, e) =>
+             {
+                 if (e.PropertyName == nameof(Contact.HasErrors))
+                 {
+                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                 }
+             };
+            
         }
 
         public ContactWrapper Contact
@@ -66,7 +74,7 @@ namespace Mailler.UI.ViewModel
         private bool OnSaveCanExecute()
         {
             //Todo : Check if its valid
-            return true;
+            return Contact!= null && !Contact.HasErrors;
         }
 
         private void OnOpenFriendDetailView(int contactId)

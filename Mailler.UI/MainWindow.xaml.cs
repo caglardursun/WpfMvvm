@@ -1,5 +1,6 @@
 ﻿using Mailler.DataAccess;
 using Mailler.UI.ViewModel;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Mailler.UI
@@ -18,10 +19,10 @@ namespace Mailler.UI
             Loaded += MainWindow_Loaded;
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             
-            _viewModel.Load();            
+            await _viewModel.Load();            
         }
     }
 }

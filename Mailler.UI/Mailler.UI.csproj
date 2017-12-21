@@ -77,6 +77,8 @@
     <Compile Include="Bootstraper\Bootstrapper.cs" />
     <Compile Include="Data\Repositories\ContactRepository.cs" />
     <Compile Include="Event\AfterContactSaveEvent.cs" />
+    <Compile Include="View\Services\IMessageDialogServices.cs" />
+    <Compile Include="View\Services\MessageDialogServices.cs" />
     <Compile Include="Wrapper\ContactWrapper.cs" />
     <Compile Include="Wrapper\ModelWrapper.cs" />
     <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />

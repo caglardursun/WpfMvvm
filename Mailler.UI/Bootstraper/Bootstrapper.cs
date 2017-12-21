@@ -3,6 +3,7 @@ using Mailler.DataAccess;
 using Mailler.UI.Data;
 using Mailler.UI.Data.LookUps;
 using Mailler.UI.Data.Repositories;
+using Mailler.UI.View.Services;
 using Mailler.UI.ViewModel;
 using Prism.Events;
 using System;
@@ -22,6 +23,7 @@ namespace Mailler.UI.Bootstraper
             builder.RegisterType<ContactOrganizerDbContext>().AsSelf();
 
             builder.RegisterType<MainWindow>().AsSelf();
+            builder.RegisterType<MessageDialogServices>().As<IMessageDialogServices>();
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
 

@@ -38,5 +38,10 @@ namespace Mailler.UI.Data.Repositories
             await _context.SaveChangesAsync();
             
         }
+
+        public bool HasChanges()
+        {
+            return _context.ChangeTracker.HasChanges();
+        }
     }
 }

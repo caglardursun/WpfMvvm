@@ -17,19 +17,17 @@ namespace Mailler.UI.ViewModel
 {
     public class ContactDetailViewModel : ViewModelBase, IContactDetailViewModel
     {
-        private IContactRepository _dataService;
-
+        private IContactRepository _contactRepository;
         private IEventAggregator _eventAggregator;
-
         private ContactWrapper _contact;
+        private bool _hasChanges;
 
         public ContactDetailViewModel(IContactRepository dataService, 
             IEventAggregator eventAggregator)
         {
-            _dataService = dataService;
+            _contactRepository = dataService;
             _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<OpenContactDetailViewEvent>()
-                .Subscribe(OnOpenFriendDetailView);
+
             
 
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
@@ -37,15 +35,23 @@ namespace Mailler.UI.ViewModel
 
         public async Task LoadAsync(int contactId)
         {
-            var contact = await _dataService.GetByIdAsync(contactId);
+            var contact = await _contactRepository.GetByIdAsync(contactId);
             Contact = new ContactWrapper(contact);
             Contact.PropertyChanged += (s, e) =>
              {
+                 if (!HasChanges)
+                 {
+                     HasChanges = _contactRepository.HasChanges();
+
+                 }
+
                  if (e.PropertyName == nameof(Contact.HasErrors))
                  {
                      ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
                  }
              };
+
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
 
         }
 
@@ -62,11 +68,28 @@ namespace Mailler.UI.ViewModel
             }
         }
 
+        
+
+        public bool HasChanges
+        {
+            get { return _hasChanges; }
+            set {
+                if (_hasChanges != value)
+                {
+                    _hasChanges = value;
+                    OnPropertyChanged();
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+
         public ICommand SaveCommand { get; }
 
         private void OnSaveExecute()
         {
-            _dataService.SaveAsync();
+            _contactRepository.SaveAsync();
+            HasChanges = _contactRepository.HasChanges();
             _eventAggregator.GetEvent<AfterContactSaveEvent>()
                 .Publish(new AfterContactSaveEventArgs()
                 {
@@ -76,15 +99,10 @@ namespace Mailler.UI.ViewModel
         }
 
         private bool OnSaveCanExecute()
-        {
-            //Todo : Check if its valid
-            return Contact!= null && !Contact.HasErrors;
+        {            
+            return Contact != null && !Contact.HasErrors && HasChanges;
         }
 
-        private async void OnOpenFriendDetailView(int contactId)
-        {
-           await LoadAsync(contactId);
-        }
 
     }
 }

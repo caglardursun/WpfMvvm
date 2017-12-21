@@ -21,21 +21,6 @@ namespace Mailler.UI.Wrapper
         
         public int Id { get{ return Model.Id; } }
         
-        //private void ValidateProperty(string propertyName)
-        //{
-        //    ClearErrors(propertyName);
-        //    switch (propertyName)
-        //    {
-        //        case nameof(Name):
-        //            if (string.Equals(Name,"Error",StringComparison.OrdinalIgnoreCase))
-        //            {
-        //                AddError(propertyName, "Error, cannot be a real name !!!");
-        //            }
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
         
         public string Name { get { return GetValue<string>(nameof(Name)); } set { SetValue(value); } }
 

@@ -12,31 +12,30 @@ namespace Mailler.UI.Data.Repositories
 {
     public class ContactRepository : IContactRepository
     {
-        private Func<ContactOrganizerDbContext> _contextCreator;
+        
+        private ContactOrganizerDbContext _context;
 
-        public ContactRepository(Func<ContactOrganizerDbContext> contextCreator)
+        public ContactRepository(ContactOrganizerDbContext context)
         {
-            _contextCreator = contextCreator;
+            _context = context;
         }
         public async Task<Contact> GetByIdAsync(int contactId)
         {
-            using (var ctx = _contextCreator())
-            {
-                return await ctx.Contacts.AsNoTracking().SingleAsync(h=>h.Id == contactId);
-            }
+            
+                return await _context.Contacts.SingleAsync(h=>h.Id == contactId);
+            
         }
 
         public async Task<List<Contact>> GetAllAsync()
         {
-            using (var ctx = _contextCreator())
-            {
-                return await ctx.Contacts.AsNoTracking().ToListAsync();
-            }
+           
+                return await _context.Contacts.ToListAsync();
+           
         }
 
-        public void Save(Contact contact)
+        public async Task SaveAsync()
         {
-
+            await _context.SaveChangesAsync();
             
         }
     }

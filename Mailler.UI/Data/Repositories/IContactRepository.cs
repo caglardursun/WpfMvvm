@@ -8,6 +8,6 @@ namespace Mailler.UI.Data.Repositories
     {
         Task<Contact> GetByIdAsync(int contactId);
         Task<List<Contact>> GetAllAsync();
-        void Save(Contact contact);
+        Task SaveAsync();
     }
 }

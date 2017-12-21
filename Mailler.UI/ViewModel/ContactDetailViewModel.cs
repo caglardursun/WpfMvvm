@@ -30,6 +30,8 @@ namespace Mailler.UI.ViewModel
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<OpenContactDetailViewEvent>()
                 .Subscribe(OnOpenFriendDetailView);
+            
+
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
         }
 
@@ -64,7 +66,7 @@ namespace Mailler.UI.ViewModel
 
         private void OnSaveExecute()
         {
-            _dataService.Save(Contact.Model);
+            _dataService.SaveAsync();
             _eventAggregator.GetEvent<AfterContactSaveEvent>()
                 .Publish(new AfterContactSaveEventArgs()
                 {

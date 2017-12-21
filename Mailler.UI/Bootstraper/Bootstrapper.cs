@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Mailler.UI.Data;
+using Mailler.UI.Data.LookUps;
+using Mailler.UI.Data.Repositories;
 using Mailler.UI.ViewModel;
 using Prism.Events;
 using System;

@@ -56,8 +56,6 @@ namespace Mailler.UI.Wrapper
                 default:
                     break;
             }
-
-            
         }
 
         }

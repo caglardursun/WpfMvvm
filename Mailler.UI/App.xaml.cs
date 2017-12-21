@@ -19,6 +19,9 @@ namespace Mailler.UI
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string path = (System.IO.Path.GetDirectoryName(executable));
+            AppDomain.CurrentDomain.SetData("DataDirectory", path);
             var bootstrapper = new Bootstrapper();
             var container = bootstrapper.Bootstrap();
             var mainWindow = container.Resolve<MainWindow>();

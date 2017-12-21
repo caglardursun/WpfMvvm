@@ -1,5 +1,6 @@
 ﻿using Mailler.Model;
 using Mailler.UI.Data;
+using Mailler.UI.Data.LookUps;
 using Mailler.UI.Event;
 using Prism.Events;
 using System;

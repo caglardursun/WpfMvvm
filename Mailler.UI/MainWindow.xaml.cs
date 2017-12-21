@@ -1,4 +1,5 @@
-﻿using Mailler.UI.ViewModel;
+﻿using Mailler.DataAccess;
+using Mailler.UI.ViewModel;
 using System.Windows;
 
 namespace Mailler.UI
@@ -10,6 +11,7 @@ namespace Mailler.UI
 
         public MainWindow(MainViewModel viewModel)
         {
+            InitPaths p = new InitPaths();
             InitializeComponent();
             _viewModel = viewModel;
             DataContext = _viewModel;

@@ -1,4 +1,4 @@
-﻿using Mailler.DataAccess;
+﻿using Mailler.DataAccess.LiteDB;
 using Mailler.Model;
 using System;
 using System.Collections.Generic;
@@ -7,19 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mailler.UI.Data
+namespace Mailler.UI.Data.LookUps
 {
     public class LookUpContactDataService : ILookUpContactDataService
     {
-        private DataProvider _dataProvider;
+
 
         public LookUpContactDataService()
         {
-            _dataProvider = DataProvider.Instance;
         }
 
         public IEnumerable<LookUpItem> GetContactLookUp()
         {
+            DataProvider _dataProvider = DataProvider.Instance;
             return _dataProvider.GetAll().Select(f => new LookUpItem()
                     {
                         Id = f.Id,

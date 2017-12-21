@@ -23,7 +23,8 @@ namespace Mailler.UI.ViewModel
 
         private ContactWrapper _contact;
 
-        public ContactDetailViewModel(IContactRepository dataService, IEventAggregator eventAggregator)
+        public ContactDetailViewModel(IContactRepository dataService, 
+            IEventAggregator eventAggregator)
         {
             _dataService = dataService;
             _eventAggregator = eventAggregator;
@@ -32,9 +33,9 @@ namespace Mailler.UI.ViewModel
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
         }
 
-        public void Load(int contactId)
+        public async Task LoadAsync(int contactId)
         {
-            var contact = _dataService.GetById(contactId).First();
+            var contact = await _dataService.GetByIdAsync(contactId);
             Contact = new ContactWrapper(contact);
             Contact.PropertyChanged += (s, e) =>
              {
@@ -43,7 +44,7 @@ namespace Mailler.UI.ViewModel
                      ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
                  }
              };
-            
+
         }
 
         public ContactWrapper Contact
@@ -78,9 +79,9 @@ namespace Mailler.UI.ViewModel
             return Contact!= null && !Contact.HasErrors;
         }
 
-        private void OnOpenFriendDetailView(int contactId)
+        private async void OnOpenFriendDetailView(int contactId)
         {
-            Load(contactId);
+           await LoadAsync(contactId);
         }
 
     }

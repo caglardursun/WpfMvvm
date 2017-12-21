@@ -53,9 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataProvider.cs" />
-    <Compile Include="Repository\GenericRepository.cs" />
-    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="ContactOrganizerDbContext.cs" />
+    <Compile Include="LiteDB\DataProvider.cs" />
+    <Compile Include="LiteDB\Repository\GenericRepository.cs" />
+    <Compile Include="LiteDB\Repository\IRepository.cs" />
+    <Compile Include="Migrations\201712210903210_InitialDatabase.cs" />
+    <Compile Include="Migrations\201712210903210_InitialDatabase.Designer.cs">
+      <DependentUpon>201712210903210_InitialDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +75,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201712210903210_InitialDatabase.resx">
+      <DependentUpon>201712210903210_InitialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

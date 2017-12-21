@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Mailler.Model;
 
 namespace Mailler.UI.Data.LookUps
 {
     public interface ILookUpContactDataService
-    {
-        IEnumerable<LookUpItem> GetContactLookUp();
+    {        
+        Task<List<LookUpItem>> GetContactLookUpAsync();
     }
 }

@@ -1,4 +1,5 @@
-﻿using Mailler.DataAccess.Repository;
+﻿using Mailler.DataAccess.LiteDB.Repository;
+
 using Mailler.Model;
 using System;
 using System.Collections;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mailler.DataAccess
+namespace Mailler.DataAccess.LiteDB
 {
     public class DataProvider
     {

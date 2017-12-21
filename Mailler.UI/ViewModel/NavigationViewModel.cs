@@ -33,15 +33,16 @@ namespace Mailler.UI.ViewModel
             
         }
 
-        public void Load()
+        public async Task LoadAsync()
         {
-            var lookUp = _contactLookupService.GetContactLookUp();
+            var lookUp = await _contactLookupService.GetContactLookUpAsync();
             Contacts.Clear();
             foreach (var item in lookUp)
             {
-                Contacts.Add(new NavigationItemViewModel(item.Id, item.DisplayMember ));
+                Contacts.Add(new NavigationItemViewModel(item.Id, item.DisplayMember));
             }
         }
+
 
         public ObservableCollection<NavigationItemViewModel> Contacts { get; }
 

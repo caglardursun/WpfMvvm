@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mailler.DataAccess.Repository
+namespace Mailler.DataAccess.LiteDB.Repository
 {
     public interface IRepository<T>
     {

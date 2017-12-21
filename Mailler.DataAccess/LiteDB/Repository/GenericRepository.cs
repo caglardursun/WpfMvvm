@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mailler.DataAccess.Repository
+namespace Mailler.DataAccess.LiteDB.Repository
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {

@@ -11,7 +11,7 @@ namespace Mailler.UI
 
         public MainWindow(MainViewModel viewModel)
         {
-            InitPaths p = new InitPaths();
+            
             InitializeComponent();
             _viewModel = viewModel;
             DataContext = _viewModel;

@@ -1,7 +1,9 @@
-﻿namespace Mailler.UI.ViewModel
+﻿using System.Threading.Tasks;
+
+namespace Mailler.UI.ViewModel
 {
     public interface IContactDetailViewModel
     {
-        void Load(int contactId);
+        Task LoadAsync(int contactId);
     }
 }

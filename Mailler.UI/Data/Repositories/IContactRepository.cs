@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Mailler.Model;
 
 namespace Mailler.UI.Data.Repositories   
 {
     public interface IContactRepository
     {
-        IEnumerable<Contact> GetById(int contactId);
+        Task<Contact> GetByIdAsync(int contactId);
+        Task<List<Contact>> GetAllAsync();
         void Save(Contact contact);
     }
 }

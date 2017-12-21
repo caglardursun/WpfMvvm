@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Mailler.DataAccess;
 using Mailler.UI.Data;
 using Mailler.UI.Data.LookUps;
 using Mailler.UI.Data.Repositories;
@@ -17,13 +18,17 @@ namespace Mailler.UI.Bootstraper
         public IContainer Bootstrap()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
+            builder.RegisterType<ContactOrganizerDbContext>().AsSelf();
+
             builder.RegisterType<MainWindow>().AsSelf();
+            builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
-            builder.RegisterType<ContactDetailViewModel>().As<IContactDetailViewModel>();
-            builder.RegisterType<ContactRepository>().As<IContactRepository>();
+
             builder.RegisterType<LookUpContactDataService>().AsImplementedInterfaces();
+            builder.RegisterType<ContactRepository>().As<IContactRepository>();                                   
+            builder.RegisterType<ContactDetailViewModel>().As<IContactDetailViewModel>();
+            
             return builder.Build();
         }
     }

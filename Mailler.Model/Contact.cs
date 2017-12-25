@@ -3,7 +3,8 @@
 namespace Mailler.Model
 {
     public class Contact
-    {        
+    {
+
         [Key]
         public int Id { get; set; }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mailler.UI.Event
 {
-    public class OpenContactDetailViewEvent: PubSubEvent<int>
+    public class OpenContactDetailViewEvent: PubSubEvent<int?>
     {
 
     }

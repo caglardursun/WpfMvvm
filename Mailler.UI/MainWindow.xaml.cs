@@ -22,7 +22,7 @@ namespace Mailler.UI
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             
-            await _viewModel.Load();            
+            await _viewModel.LoadAsync();            
         }
     }
 }

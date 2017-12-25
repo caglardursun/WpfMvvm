@@ -33,9 +33,12 @@ namespace Mailler.UI.ViewModel
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
         }
 
-        public async Task LoadAsync(int contactId)
+        public async Task LoadAsync(int? contactId)
         {
-            var contact = await _contactRepository.GetByIdAsync(contactId);
+            var contact = contactId.HasValue
+                ? await _contactRepository.GetByIdAsync(contactId.Value)
+                : CreateNewContact();
+
             Contact = new ContactWrapper(contact);
             Contact.PropertyChanged += (s, e) =>
              {
@@ -51,10 +54,21 @@ namespace Mailler.UI.ViewModel
                  }
              };
 
+            if (contact.Id == 0)
+            {
+                //Little trick to trigger the validation
+                contact.Name = "";
+            }
+
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
 
         }
-
+        private Contact CreateNewContact()
+        {
+            var contact = new Contact();
+            _contactRepository.Add(contact);
+            return contact;
+        }
         public ContactWrapper Contact
         {
             get
@@ -67,9 +81,6 @@ namespace Mailler.UI.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        
-
         public bool HasChanges
         {
             get { return _hasChanges; }
@@ -82,10 +93,7 @@ namespace Mailler.UI.ViewModel
                 }
             }
         }
-
-
         public ICommand SaveCommand { get; }
-
         private void OnSaveExecute()
         {
             _contactRepository.SaveAsync();
@@ -97,12 +105,10 @@ namespace Mailler.UI.ViewModel
                     DisplayMember = $"{Contact.Name} {Contact.Surname}"
                 });
         }
-
         private bool OnSaveCanExecute()
         {            
             return Contact != null && !Contact.HasErrors && HasChanges;
         }
-
-
+        
     }
 }

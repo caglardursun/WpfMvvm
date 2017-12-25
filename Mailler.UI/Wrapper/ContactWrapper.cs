@@ -14,7 +14,8 @@ namespace Mailler.UI.Wrapper
     
     public class ContactWrapper : ModelWrapper<Contact>
     {
-        public ContactWrapper(Contact model):base(model)
+        public ContactWrapper(Contact model)
+            :base(model)
         {            
         }
 

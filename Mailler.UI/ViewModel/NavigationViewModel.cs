@@ -28,8 +28,16 @@ namespace Mailler.UI.ViewModel
 
         private void AfterContactSave(AfterContactSaveEventArgs obj)
         {
-            var lookupItem = Contacts.Single(l => l.Id == obj.Id);
-            lookupItem.DisplayMember = obj.DisplayMember;
+            var lookupItem = Contacts.SingleOrDefault(l => l.Id == obj.Id);
+            if (lookupItem == null)
+            {
+                Contacts.Add(new NavigationItemViewModel(obj.Id,obj.DisplayMember,_eventAggregator));
+            }
+            else
+            {
+                lookupItem.DisplayMember = obj.DisplayMember;
+            }
+            
             
         }
 

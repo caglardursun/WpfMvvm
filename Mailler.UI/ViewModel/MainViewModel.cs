@@ -1,42 +1,24 @@
 ﻿using Mailler.UI.Event;
 using Mailler.UI.View.Services;
+using Prism.Commands;
 using Prism.Events;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Mailler.UI.ViewModel
 {
     public class MainViewModel : ViewModelBase
-    {        
-        public MainViewModel(INavigationViewModel navigationViewModel,
-            Func<IContactDetailViewModel> contactDetailModelCreator,
-            IEventAggregator eventAggregator, 
-            IMessageDialogServices messageDialogServices)
-        {
-            
-            
-            
-            _eventAggregator = eventAggregator;
-            _contactDetailModelCreator = contactDetailModelCreator;
-            _messageDialogServices = messageDialogServices;
-            _eventAggregator.GetEvent<OpenContactDetailViewEvent>()
-                            .Subscribe(OnOpenFriendDetailView);
+    {
 
 
-            NavigationViewModel = navigationViewModel;
-        }
-
-        public async Task Load()
-        {
-            await NavigationViewModel.LoadAsync();
-        }
-
-        public INavigationViewModel NavigationViewModel { get; }
-
+        
         private Func<IContactDetailViewModel> _contactDetailModelCreator;
         private IMessageDialogServices _messageDialogServices;
         private IContactDetailViewModel contactDetailViewModel;
+        private IEventAggregator _eventAggregator;
 
+        public INavigationViewModel NavigationViewModel { get; }
         public IContactDetailViewModel ContactDetailViewModel
         {
             get { return contactDetailViewModel; }
@@ -44,10 +26,30 @@ namespace Mailler.UI.ViewModel
         }
 
 
-        private IEventAggregator _eventAggregator;
+        public MainViewModel(INavigationViewModel navigationViewModel,
+            Func<IContactDetailViewModel> contactDetailModelCreator,
+            IEventAggregator eventAggregator, 
+            IMessageDialogServices messageDialogServices)
+        {
+            
+            _eventAggregator = eventAggregator;
+            _contactDetailModelCreator = contactDetailModelCreator;
+            _messageDialogServices = messageDialogServices;
+            _eventAggregator.GetEvent<OpenContactDetailViewEvent>()
+                            .Subscribe(OnOpenFriendDetailView);
 
+            CreateNewContactCommand = new DelegateCommand(OnCreateNewContact);
 
-        private async void OnOpenFriendDetailView(int contactId)
+            NavigationViewModel = navigationViewModel;
+        }
+
+        public ICommand CreateNewContactCommand { get; }
+        public async Task LoadAsync()
+        {
+            await NavigationViewModel.LoadAsync();
+        }
+        
+        private async void OnOpenFriendDetailView(int? contactId)
         {
             if (ContactDetailViewModel != null && ContactDetailViewModel.HasChanges)
             {
@@ -60,6 +62,10 @@ namespace Mailler.UI.ViewModel
             await ContactDetailViewModel.LoadAsync(contactId);
         }
 
+        private void OnCreateNewContact()
+        {
+            OnOpenFriendDetailView(null);
+        }
     }
     
 }

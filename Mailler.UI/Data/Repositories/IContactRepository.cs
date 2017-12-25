@@ -10,5 +10,6 @@ namespace Mailler.UI.Data.Repositories
         Task<List<Contact>> GetAllAsync();
         Task SaveAsync();
         bool HasChanges();
+        void Add(Contact contact);
     }
 }

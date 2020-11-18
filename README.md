@@ -1,2 +1,2 @@
 # WpfMvvm
-My tryouts about MVVM pattern in WPF and some arhitectures approach
+My tryouts about MVVM pattern in WPF and some arhitectural approaches
